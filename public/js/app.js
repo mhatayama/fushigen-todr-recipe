@@ -4,6 +4,7 @@ const elHelp = document.querySelector("p.help");
 const elRemoveIcon = document.querySelector(".icon-remove");
 const elMixingCounter = document.querySelector(".mixing-counter")
 const elMxingResult = document.querySelector("#mixing-result");
+const elCraftingCounter = document.querySelector(".crafting-counter");
 
 qlForm.addEventListener("submit", getSearchResult);
 
@@ -30,26 +31,22 @@ function getSearchResult(e) {
       return res.json();
     })
     .then(json => {
-      elMixingCounter.innerHTML = json.length;
-
       if (json.length === 0) {
         elSearchTextInput.classList.add("is-danger");
         elHelp.innerHTML = "結果が見つかりませんでした。";
         return;
       }
 
-      elMxingResult.innerHTML = json.map(row => {
-        return `<tr>
-          <td>${row.category}</td>
-          <td class="click-search">${row.result}</td>
-          <td class="click-search">${row.item1}</td>
-          <td class="click-search">${row.item2}</td>
-          <td class="click-search">${row.item3}</td>
-          <td class="click-search">${row.item4}</td>
-          <td class="click-search">${row.item5}</td>
-          <td class="click-search">${row.item6}</td>
-          </tr>`
-      }).join("\n");
+      mixingResult = json.filter(row => 
+        ['札', '薬', 'ス', '食', '隙', '他', '素'].includes(row.category)
+      );
+      craftingResult = json.filter(row => 
+        ['武', '防', '守'].includes(row.category)
+      );
+      elMixingCounter.innerHTML = mixingResult.length;
+      elCraftingCounter.innerHTML = craftingResult.length;
+
+      elMxingResult.innerHTML = mixingResult.map(createTableRow).join("\n");
 
       document.querySelectorAll("td.click-search").forEach(item => {
         const itemName = item.innerHTML;
@@ -59,6 +56,19 @@ function getSearchResult(e) {
         item.addEventListener("click", instantClickSearch);
       });
     });
+}
+
+function createTableRow(row) {
+  return `<tr>
+    <td>${row.category}</td>
+    <td class="click-search">${row.result}</td>
+    <td class="click-search">${row.item1}</td>
+    <td class="click-search">${row.item2}</td>
+    <td class="click-search">${row.item3}</td>
+    <td class="click-search">${row.item4}</td>
+    <td class="click-search">${row.item5}</td>
+    <td class="click-search">${row.item6}</td>
+    </tr>`
 }
 
 function instantClickSearch(e) {

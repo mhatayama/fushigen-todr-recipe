@@ -21,8 +21,9 @@ db.serialize(() => {
     console.log('Created the table for recipes.');
   });
 
-  const csvData = fs.readFileSync('database/recipes.csv', 'utf8');
-  csvParse(csvData, { comment: '#' }, (err, output) => {
+  const recipeDataMixing = fs.readFileSync('database/recipes-mixing.csv', 'utf8');
+  const recipeDataCrafing = fs.readFileSync('database/recipes-crafting.csv', 'utf8');
+  csvParse(recipeDataMixing + recipeDataCrafing, { comment: '#' }, (err, output) => {
     if (err) {
       return console.error(err.message);
     }
@@ -49,7 +50,6 @@ console.log(`server on ${port}`);
 
 app.get('/api/search/:text', (req, res) => {
   const searchText = req.params.text;
-  // console.log(`searchText = ${searchText}`);
   if (!searchText) {
     res.send([]);
   }
