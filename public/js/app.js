@@ -80,9 +80,9 @@ function createTableRow(row) {
 
 function instantClickSearch(e) {
   let itemName = e.target.innerHTML;
-  // rank等の追加情報の除去 例:"豊姫の扇子<br>(ジュリ扇rank3)" -> "豊姫の扇子"
-  if (itemName.includes("<br>")) {
-    itemName = itemName.split("<br>")[0];
+  // Lvやrank等の追加情報の除去 例:"豊姫の扇子<br>(ジュリ扇rank3)" -> "豊姫の扇子"
+  if (/\s|<br>/.test(itemName)) {
+    itemName = itemName.split(/\s|<br>/)[0];
   }
   // お札の枚数を除去 例:"低速の札(3)" -> "低速の札"
   if (/(.+)\(\d+\)$/.test(itemName)) {
