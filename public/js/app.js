@@ -49,20 +49,24 @@ function getSearchResult(e) {
       }).join("\n");
 
       document.querySelectorAll("td.click-search").forEach(item => {
+        const itemName = item.innerHTML;
+        if (searchText === itemName) {
+          item.classList.add("has-background-warning");
+        }
         item.addEventListener("click", instantClickSearch);
       });
     });
 }
 
 function instantClickSearch(e) {
-  let searchText = e.target.innerHTML;
-  if (searchText.includes("<br>")) {
-    searchText = searchText.split("<br>")[0];
+  let itemName = e.target.innerHTML;
+  if (itemName.includes("<br>")) {
+    itemName = itemName.split("<br>")[0];
   }
-  if (/(.+)\(\d+\)$/.test(searchText)) {
-    searchText = /(.+)\(\d+\)$/.exec(searchText)[1];
+  if (/(.+)\(\d+\)$/.test(itemName)) {
+    itemName = /(.+)\(\d+\)$/.exec(itemName)[1];
   }
 
-  elSearchTextInput.value = searchText;
+  elSearchTextInput.value = itemName;
   getSearchResult(e);
 }
