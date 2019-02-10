@@ -27,7 +27,7 @@ function getSearchResult(e) {
       return res.json();
     })
     .then(json => {
-      elMixingCounter.innerHTML = `${json.length} 件`;
+      elMixingCounter.innerHTML = json.length;
 
       if (json.length === 0) {
         elSearchTextInput.classList.add("is-danger");
