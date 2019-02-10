@@ -5,7 +5,6 @@ const elRemoveIcon = document.querySelector(".icon-remove");
 const elMxingResult = document.querySelector("#mixing-result");
 
 qlForm.addEventListener("submit", getSearchResult);
-elRemoveIcon.addEventListener("click", removeText);
 
 function getSearchResult(e) {
   e.preventDefault();
@@ -46,8 +45,4 @@ function getSearchResult(e) {
           </tr>`
       }).join("\n");
     });
-}
-
-function removeText(e) {
-  elSearchTextInput.value = "";
 }
