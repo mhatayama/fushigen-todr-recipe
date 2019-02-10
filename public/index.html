@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>不思議の幻想郷TODR 調合・錬成レシピ検索</title>
+  <link rel="stylesheet" href="/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script defer src="/js/app.js"></script>
+</head>
+
+<body>
+  <section class="section hero is-dark">
+    <div class="container">
+      <h1 class="title">
+        調合・錬成レシピ検索 for TODR
+      </h1>
+      <form id="searchForm">
+        <div class="field is-grouped is-grouped-centered">
+          <div class="control has-icons-left has-icons-right">
+            <input class="input search-text" type="text" placeholder="アイテム名">
+            <span class="icon is-small is-left">
+              <i class="fa fa-search"></i>
+            </span>
+            <span class="icon is-small is-right icon-remove">
+              <i class="fa fa-times"></i>
+            </span>
+            <p class="help">
+              検索したいアイテム名を入力してください。
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-size-4">調合</h2>
+      <table class="table is-hoverable is-fullwidth is-striped is-size-7">
+        <thead>
+          <tr>
+            <th>完成品</th>
+            <th>材料1</th>
+            <th>材料2</th>
+            <th>材料3</th>
+            <th>材料4</th>
+            <th>材料5</th>
+            <th>材料6</th>
+          </tr>
+        </thead>
+        <tbody id="mixing-result">
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>
