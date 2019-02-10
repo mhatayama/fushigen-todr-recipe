@@ -2,6 +2,7 @@ const qlForm = document.querySelector("#searchForm");
 const elSearchTextInput = document.querySelector(".search-text");
 const elHelp = document.querySelector("p.help");
 const elRemoveIcon = document.querySelector(".icon-remove");
+const elMixingCounter = document.querySelector(".mixing-counter")
 const elMxingResult = document.querySelector("#mixing-result");
 
 qlForm.addEventListener("submit", getSearchResult);
@@ -26,6 +27,8 @@ function getSearchResult(e) {
       return res.json();
     })
     .then(json => {
+      elMixingCounter.innerHTML = `${json.length} 件`;
+
       if (json.length === 0) {
         elSearchTextInput.classList.add("is-danger");
         elHelp.innerHTML = "結果が見つかりませんでした。";
