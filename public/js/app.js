@@ -35,6 +35,7 @@ function getSearchResult(e) {
 
       elMxingResult.innerHTML = json.map(row => {
         return `<tr>
+          <td>${row.category}</td>
           <td>${row.result}</td>
           <td>${row.item1}</td>
           <td>${row.item2}</td>
