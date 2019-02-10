@@ -57,7 +57,7 @@ function getSearchResult(e) {
 
       document.querySelectorAll("td.click-search").forEach(item => {
         const itemName = item.innerHTML;
-        if (searchText === itemName) {
+        if (itemName.includes(searchText)) {
           item.classList.add("has-background-warning");
         }
         item.addEventListener("click", instantClickSearch);
