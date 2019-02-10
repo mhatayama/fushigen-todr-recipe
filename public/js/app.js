@@ -8,9 +8,16 @@ qlForm.addEventListener("submit", getSearchResult);
 elRemoveIcon.addEventListener("click", removeText);
 
 function getSearchResult(e) {
+  e.preventDefault();
+
   elMxingResult.innerHTML = "";
 
   const searchText = elSearchTextInput.value;
+
+  if (searchText === "") {
+    return;
+  }
+
   fetch(`/api/search/${encodeURI(searchText)}`)
     .then(res => {
       if (res.status != 200) {
@@ -38,8 +45,6 @@ function getSearchResult(e) {
           </tr>`
       }).join("\n");
     });
-
-  e.preventDefault();
 }
 
 function removeText(e) {
