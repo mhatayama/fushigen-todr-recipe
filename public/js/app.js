@@ -2,11 +2,18 @@ const qlForm = document.querySelector("#searchForm");
 const elSearchTextInput = document.querySelector(".search-text");
 const elHelp = document.querySelector("p.help");
 const elRemoveIcon = document.querySelector(".icon-remove");
+const elMixingTab = document.querySelector(".mixing-tab");
 const elMixingCounter = document.querySelector(".mixing-counter")
+const elMixingTable = document.querySelector(".mixing-table");
 const elMxingResult = document.querySelector("#mixing-result");
+const elCraftingTab = document.querySelector(".crafting-tab");
 const elCraftingCounter = document.querySelector(".crafting-counter");
+const elCraftingTable = document.querySelector(".crafting-table");
+const elCraftingResult = document.querySelector("#crafting-result");
 
 qlForm.addEventListener("submit", getSearchResult);
+elMixingTab.addEventListener("click", clickTab);
+elCraftingTab.addEventListener("click", clickTab);
 
 function getSearchResult(e) {
   e.preventDefault();
@@ -45,8 +52,8 @@ function getSearchResult(e) {
       );
       elMixingCounter.innerHTML = mixingResult.length;
       elCraftingCounter.innerHTML = craftingResult.length;
-
       elMxingResult.innerHTML = mixingResult.map(createTableRow).join("\n");
+      elCraftingResult.innerHTML = craftingResult.map(createTableRow).join("\n");
 
       document.querySelectorAll("td.click-search").forEach(item => {
         const itemName = item.innerHTML;
@@ -73,13 +80,29 @@ function createTableRow(row) {
 
 function instantClickSearch(e) {
   let itemName = e.target.innerHTML;
+  // rank等の追加情報の除去 例:"豊姫の扇子<br>(ジュリ扇rank3)" -> "豊姫の扇子"
   if (itemName.includes("<br>")) {
     itemName = itemName.split("<br>")[0];
   }
+  // お札の枚数を除去 例:"低速の札(3)" -> "低速の札"
   if (/(.+)\(\d+\)$/.test(itemName)) {
     itemName = /(.+)\(\d+\)$/.exec(itemName)[1];
   }
 
   elSearchTextInput.value = itemName;
   getSearchResult(e);
+}
+
+function clickTab(e) {
+  if (e.target.classList.contains("mixing-tab")) {
+    elMixingTable.classList.remove("is-hidden");
+    elCraftingTable.classList.add("is-hidden");
+    elMixingTab.parentElement.classList.add("is-active");
+    elCraftingTab.parentElement.classList.remove("is-active");
+  } else {
+    elMixingTable.classList.add("is-hidden");
+    elCraftingTable.classList.remove("is-hidden");
+    elMixingTab.parentElement.classList.remove("is-active");
+    elCraftingTab.parentElement.classList.add("is-active");
+  }
 }
