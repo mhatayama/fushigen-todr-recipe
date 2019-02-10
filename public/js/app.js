@@ -10,6 +10,9 @@ qlForm.addEventListener("submit", getSearchResult);
 function getSearchResult(e) {
   e.preventDefault();
 
+  elSearchTextInput.classList.remove("is-danger");
+  elHelp.innerHTML = "アイテム名を入力してください。";
+
   const searchText = elSearchTextInput.value;
 
   if (searchText === "") {
