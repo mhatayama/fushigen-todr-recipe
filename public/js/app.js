@@ -73,7 +73,7 @@ class TODRRecipeSearch {
           if (itemName.includes(searchText)) {
             item.classList.add("has-background-warning");
           }
-          item.addEventListener("click", this.instantClickSearch);
+          item.addEventListener("click", this.instantClickSearch.bind(this));
         });
 
         this.toggleSearchIcon();
@@ -105,7 +105,7 @@ class TODRRecipeSearch {
     }
 
     this.elSearchTextInput.value = itemName;
-    this.getSearchResult(e);
+    this.fetchSearchResult(e);
   }
 
   toggleTab(e) {
@@ -132,5 +132,5 @@ class TODRRecipeSearch {
   }
 }
 
-const app = new TODRRecipeSearch()
+const app = new TODRRecipeSearch();
 app.setup();
