@@ -28,6 +28,7 @@ function getSearchResult(e) {
   }
 
   elMxingResult.innerHTML = "";
+  elCraftingResult.innerHTML = "";
 
   fetch(`/api/search/${encodeURI(searchText)}`)
     .then(res => {
@@ -41,6 +42,8 @@ function getSearchResult(e) {
       if (json.length === 0) {
         elSearchTextInput.classList.add("is-danger");
         elHelp.innerHTML = "結果が見つかりませんでした。";
+        elMixingCounter.innerHTML = "0";
+        elCraftingCounter.innerHTML = "0";
         return;
       }
 
