@@ -10,6 +10,8 @@ const elCraftingTab = document.querySelector(".crafting-tab");
 const elCraftingCounter = document.querySelector(".crafting-counter");
 const elCraftingTable = document.querySelector(".crafting-table");
 const elCraftingResult = document.querySelector("#crafting-result");
+const elSearchIcon = document.querySelector(".search-icon");
+const elSpinnerIcon = document.querySelector(".spinner-icon");
 
 qlForm.addEventListener("submit", getSearchResult);
 elMixingTab.addEventListener("click", clickTab);
@@ -29,12 +31,15 @@ function getSearchResult(e) {
 
   elMxingResult.innerHTML = "";
   elCraftingResult.innerHTML = "";
+  toggleSearchIcon();
 
   fetch(`/api/search/${encodeURI(searchText)}`)
     .then(res => {
       if (res.status != 200) {
         elSearchTextInput.classList.add("is-danger");
         elHelp.innerHTML = "問題が発生しました。";
+        toggleSearchIcon();
+        return;
       }
       return res.json();
     })
@@ -44,6 +49,7 @@ function getSearchResult(e) {
         elHelp.innerHTML = "結果が見つかりませんでした。";
         elMixingCounter.innerHTML = "0";
         elCraftingCounter.innerHTML = "0";
+        toggleSearchIcon();
         return;
       }
 
@@ -65,6 +71,8 @@ function getSearchResult(e) {
         }
         item.addEventListener("click", instantClickSearch);
       });
+
+      toggleSearchIcon();
     });
 }
 
@@ -108,4 +116,9 @@ function clickTab(e) {
     elMixingTab.parentElement.classList.remove("is-active");
     elCraftingTab.parentElement.classList.add("is-active");
   }
+}
+
+function toggleSearchIcon() {
+  elSearchIcon.classList.toggle("is-hidden");
+  elSpinnerIcon.classList.toggle("is-hidden");  
 }
