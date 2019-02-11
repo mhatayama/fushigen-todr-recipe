@@ -1,6 +1,5 @@
 const qlForm = document.querySelector("#searchForm");
 const elSearchTextInput = document.querySelector(".search-text");
-const elHelp = document.querySelector("p.help");
 const elRemoveIcon = document.querySelector(".icon-remove");
 const elMixingTab = document.querySelector(".mixing-tab");
 const elMixingCounter = document.querySelector(".mixing-counter")
@@ -12,16 +11,21 @@ const elCraftingTable = document.querySelector(".crafting-table");
 const elCraftingResult = document.querySelector("#crafting-result");
 const elSearchIcon = document.querySelector(".search-icon");
 const elSpinnerIcon = document.querySelector(".spinner-icon");
+const elHelpLink = document.querySelector("p.help");
+const elModalClose = document.querySelector(".modal-close");
+const elModalBackground = document.querySelector(".modal-background");
 
 qlForm.addEventListener("submit", getSearchResult);
-elMixingTab.addEventListener("click", clickTab);
-elCraftingTab.addEventListener("click", clickTab);
+elMixingTab.addEventListener("click", toggleTab);
+elCraftingTab.addEventListener("click", toggleTab);
+elHelpLink.addEventListener("click", toggleModalHelp);
+elModalClose.addEventListener("click", toggleModalHelp);
+elModalBackground.addEventListener("click", toggleModalHelp);
 
 function getSearchResult(e) {
   e.preventDefault();
 
   elSearchTextInput.classList.remove("is-danger");
-  elHelp.innerHTML = "アイテム名を入力してください。";
 
   const searchText = elSearchTextInput.value;
 
@@ -37,7 +41,6 @@ function getSearchResult(e) {
     .then(res => {
       if (res.status != 200) {
         elSearchTextInput.classList.add("is-danger");
-        elHelp.innerHTML = "問題が発生しました。";
         toggleSearchIcon();
         return;
       }
@@ -46,7 +49,6 @@ function getSearchResult(e) {
     .then(json => {
       if (json.length === 0) {
         elSearchTextInput.classList.add("is-danger");
-        elHelp.innerHTML = "結果が見つかりませんでした。";
         elMixingCounter.innerHTML = "0";
         elCraftingCounter.innerHTML = "0";
         toggleSearchIcon();
@@ -104,7 +106,7 @@ function instantClickSearch(e) {
   getSearchResult(e);
 }
 
-function clickTab(e) {
+function toggleTab(e) {
   if (e.target.classList.contains("mixing-tab")) {
     elMixingTable.classList.remove("is-hidden");
     elCraftingTable.classList.add("is-hidden");
@@ -121,4 +123,8 @@ function clickTab(e) {
 function toggleSearchIcon() {
   elSearchIcon.classList.toggle("is-hidden");
   elSpinnerIcon.classList.toggle("is-hidden");  
+}
+
+function toggleModalHelp() {
+  document.querySelector('.modal').classList.toggle('is-active')
 }

@@ -15,11 +15,9 @@
 <body>
   <section class="section hero is-dark">
     <div class="container has-text-centered">
-      <h1 class="title is-size-5">
-        調合・錬成レシピ検索 for TODR
-      </h1>
+      <h1 class="title is-size-5">調合・錬成レシピ検索 for TODR</h1>
       <form id="searchForm">
-        <div class="field is-grouped is-grouped-centered">
+        <div class="field">
           <div class="control has-icons-left">
             <input class="input search-text" type="search" placeholder="アイテム名">
             <span class="icon is-small is-left search-icon">
@@ -28,10 +26,8 @@
             <span class="icon is-small is-left is-hidden spinner-icon">
               <i class="fa fa-spinner fa-spin"></i>
             </span>
-            <p class="help">
-              アイテム名を入力してください。
-            </p>
           </div>
+          <p class="help"><a>ヘルプ</a></p>
         </div>
       </form>
     </div>
@@ -71,23 +67,43 @@
         </tbody>
       </table>
       <table class="table crafting-table is-hoverable is-fullwidth is-striped is-size-7 is-hidden">
-          <thead>
-            <tr>
-              <th></th>
-              <th>完成品</th>
-              <th>材料1</th>
-              <th>材料2</th>
-              <th>材料3</th>
-              <th>材料4</th>
-              <th>材料5</th>
-              <th>材料6</th>
-            </tr>
-          </thead>
-          <tbody id="crafting-result">
-          </tbody>
-        </table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>完成品</th>
+            <th>材料1</th>
+            <th>材料2</th>
+            <th>材料3</th>
+            <th>材料4</th>
+            <th>材料5</th>
+            <th>材料6</th>
+          </tr>
+        </thead>
+        <tbody id="crafting-result">
+        </tbody>
+      </table>
     </div>
   </section>
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box is-size-7">
+        <strong>■ このサイトについて</strong>
+        <p>・AQUA STYLEのPS/NS/Steam用ゲーム、不思議の幻想郷TODRの調合と錬成のレシピを、完成品や素材のアイテム名から検索できるサイトです。</p>
+        <p><strong>■ 使い方</strong></p>
+        <p>・タイトル下の検索欄にレシピを検索したいアイテム名（一部でもOK）を入力してEnterを押すと、該当するレシピの一覧が表示されます。</p>
+        <p>・調合と錬成は別タブになっていて、どちらか一方しか同時には表示されません。それぞれボタンを押すと表示が切り替わります。</p>
+        <p>・検索アイテムにヒットしたセルはハイライトで表示されます。また、検索結果のアイテムのセルをクリックすると自動的にそのアイテム名で検索し、連続でレシピをたどることができます。</p>
+        <p>・ピンチ脱出に必要なアイテムの調達や不要なアイテムの有効活用、装備錬成の計画などに是非お役立てください。</p>
+        <p><strong>■ 動作環境</strong></p>
+        <p>・Google Chrome, Mozilla Firefox, Microsoft Edgeで動作確認しています。</p>
+        <p>・Internet Explorer 11では動作しません。すみません。</p>
+        <p><strong>■ 謝辞</strong></p>
+        <p>・レシピのデータは<a href="http://fusigentod.dojin.com/todr/index.php">不思議の幻想郷TODRwiki</a>から拝借しました。ありがとうございます。</p>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
 </body>
 
 </html>
