@@ -26,6 +26,9 @@ AQUA STYLEのPS/NS/Steam用ゲーム、[不思議の幻想郷TODR](https://www.a
 
 ## Changelog
 
+### v1.0.2
+- app.jsのクラス化
+
 ### v1.0.1
 - ヘルプ追加
 - 誤字修正
