@@ -1,6 +1,6 @@
 {
   "name": "fushigen-todr-recipe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A search tool for recipes of Touhou Gensou Wanderer -Reloaded-",
   "main": "server.js",
   "scripts": {
